@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022/2 | Slinfu的博客</title>
+  <title>Vue之watch监听器 | Slinfu的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Slinfu的博客">
-<meta property="og:url" content="http://example.com/archives/2022/02/index.html">
+  <meta name="description" content="watch监听器的两种写法：1.函数写法（不会自动触发） 缺点：  不会自动触发触发  12345watch:&amp;#123;  username(newVal,oldVal)&amp;#123;    ...  &amp;#125;&amp;#125;  2.对象格式 优点：  可利用immediate属性，去设置立即触发一次侦听器； 可利用deep属性侦听对象的属性改变；  12345678watch:&amp;#123;  u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue之watch监听器">
+<meta property="og:url" content="http://example.com/2022/02/12/Vue%E4%B9%8Bwatch%E7%9B%91%E5%90%AC%E5%99%A8/index.html">
 <meta property="og:site_name" content="Slinfu的博客">
+<meta property="og:description" content="watch监听器的两种写法：1.函数写法（不会自动触发） 缺点：  不会自动触发触发  12345watch:&amp;#123;  username(newVal,oldVal)&amp;#123;    ...  &amp;#125;&amp;#125;  2.对象格式 优点：  可利用immediate属性，去设置立即触发一次侦听器； 可利用deep属性侦听对象的属性改变；  12345678watch:&amp;#123;  u">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-12T03:49:13.000Z">
+<meta property="article:modified_time" content="2022-02-12T06:18:22.152Z">
 <meta property="article:author" content="Slinfu">
+<meta property="article:tag" content="Vue watch监听器">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Slinfu的博客" type="application/atom+xml">
@@ -128,36 +133,55 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Vue之watch监听器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/02/12/Vue%E4%B9%8Bwatch%E7%9B%91%E5%90%AC%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2022-02-12T03:49:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/12/Vue%E4%B9%8Bwatch%E7%9B%91%E5%90%AC%E5%99%A8/">Vue之watch监听器</a>
+    <h1 class="article-title" itemprop="name">
+      Vue之watch监听器
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2022/02/12/Vue%E4%B9%8Bwatch%E7%9B%91%E5%90%AC%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2022-02-12T03:49:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="watch监听器的两种写法："><a href="#watch监听器的两种写法：" class="headerlink" title="watch监听器的两种写法："></a>watch监听器的两种写法：</h4><p>1.函数写法（不会自动触发）</p>
+<p>缺点：</p>
+<ul>
+<li>不会自动触发触发</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">watch</span>:&#123;</span><br><span class="line">  <span class="title function_">username</span>(<span class="params">newVal,oldVal</span>)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.对象格式</p>
+<p>优点：</p>
+<ul>
+<li>可利用immediate属性，去设置立即触发一次侦听器；</li>
+<li>可利用deep属性侦听对象的属性改变；</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">watch</span>:&#123;</span><br><span class="line">  <span class="attr">username</span>:&#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params">newVal,oldVal</span>)&#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">immediate</span>: <span class="literal">true</span>, <span class="comment">// 表示一进来就触发侦听器</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<span id="more"></span>
+
+<h4 id="对象属性的侦听"><a href="#对象属性的侦听" class="headerlink" title="对象属性的侦听"></a>对象属性的侦听</h4><p>1.deep深度侦听（可侦听对象内的属性改变）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">data</span>:&#123;</span><br><span class="line">  <span class="attr">user</span>:&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">sex</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attr">watch</span>:&#123;</span><br><span class="line">  <span class="attr">user</span>:&#123;</span><br><span class="line">    <span class="title function_">handler</span>(<span class="params">newVal,oldVal</span>)&#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125; ,</span><br><span class="line">    <span class="attr">immediate</span>: <span class="literal">true</span>, <span class="comment">// 表示一进来就触发侦听器</span></span><br><span class="line">    <span class="attr">deep</span>: <span class="literal">true</span>, <span class="comment">// 表示开启深度侦听，只要对象内的任意属性发生改变，都会触发侦听器</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.只侦听对象的某个属性（写法如下）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">data</span>:&#123;</span><br><span class="line">  <span class="attr">user</span>:&#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">sex</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="attr">watch</span>:&#123;</span><br><span class="line">  <span class="string">&#x27;user.name&#x27;</span>(newVal,oldVal)&#123;</span><br><span class="line">    ...</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -169,57 +193,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/02/12/Vue%E4%B9%8Bwatch%E7%9B%91%E5%90%AC%E5%99%A8/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/02/11/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%AF%87-01/" class="archive-article-date">
-  	<time datetime="2022-02-11T03:49:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-02-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/02/11/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%AF%87-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">实用工具方法篇-01</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/02/11/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7%E7%AF%87-01/">实用工具方法篇-01</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">正则校验</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +315,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
